@@ -1,0 +1,540 @@
+/* DevPath AI — Polished Modern SaaS Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Theme Palette: Warm Ivory & Bright Clean Surfaces */
+  --bg-main: #F8F6F0;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F3F0E8;
+  --bg-card-hover: #FAF9F6;
+  --bg-input: #FFFFFF;
+
+  --border-subtle: #E3E0D7;
+  --border-hover: #CBD5E1;
+  --border-focus: #6555C9;
+
+  /* Restrained Lavender & Slate Accents */
+  --primary: #6555C9;
+  --primary-hover: #5344B5;
+  --accent-purple: #6555C9;
+  --accent-blue: #3B82F6;
+  --accent-cyan: #0284C7;
+
+  /* Signature CTA Gradient & Glow */
+  --signature-cta-gradient: linear-gradient(135deg, #6555C9 0%, #5344B5 100%);
+  --signature-glow: 0 2px 10px rgba(101, 85, 201, 0.2);
+  --signature-glow-hover: 0 4px 16px rgba(101, 85, 201, 0.32);
+
+  /* Status Colors */
+  --status-feasible: #15803D;
+  --status-feasible-bg: #DCFCE7;
+  --status-feasible-border: #86EFAC;
+
+  --status-tight: #B45309;
+  --status-tight-bg: #FEF3C7;
+  --status-tight-border: #FDE68A;
+
+  --status-unfeasible: #DC2626;
+  --status-unfeasible-bg: #FEE2E2;
+  --status-unfeasible-border: #FECACA;
+
+  /* Typography Colors */
+  --text-main: #252923;
+  --text-muted: #6E756A;
+  --text-dim: #94A3B8;
+  --text-inverse: #FFFFFF;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(37, 41, 35, 0.05);
+  --shadow-md: 0 4px 14px rgba(37, 41, 35, 0.07);
+  --shadow-lg: 0 12px 28px rgba(37, 41, 35, 0.09);
+
+  /* Layout */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(101, 85, 201, 0.03) 0%, transparent 60%),
+    radial-gradient(circle at 100% 20%, rgba(104, 133, 108, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 0% 80%, rgba(101, 85, 201, 0.02) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 14px;
+  }
+}
+
+/* Polished Card Panel */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+/* Compact Roadmap Results Layout */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 18px;
+  align-items: start;
+}
+
+@media (min-width: 1025px) {
+  .mobile-view-tabs {
+    display: none !important;
+  }
+  .roadmap-main-col {
+    display: block !important;
+  }
+  .roadmap-sidebar-col {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mobile-view-tabs {
+    display: flex !important;
+  }
+  .roadmap-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* Compact Progressive Disclosure */
+details.compact-disclosure > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: color 0.15s ease;
+}
+
+details.compact-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.compact-disclosure > summary:hover {
+  color: var(--primary-hover);
+}
+
+details.compact-disclosure[open] > summary {
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 11px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* The Signature Roadmap Generation Button */
+.btn-signature {
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(101, 85, 201, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-signature:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(101, 85, 201, 0.3);
+}
+
+.btn-signature:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-signature:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* "Let's Explore Your Roadmap" Signature Button */
+.btn-explore-roadmap {
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(101, 85, 201, 0.22);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-explore-roadmap:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(101, 85, 201, 0.32);
+}
+
+.btn-explore-roadmap:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-explore-roadmap:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: #FFFFFF;
+  border-color: var(--border-subtle);
+  color: var(--text-main);
+  box-shadow: 0 1px 2px rgba(37, 41, 35, 0.03);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #F8F6F0;
+  border-color: var(--border-hover);
+  color: var(--text-main);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-sm {
+  font-size: 0.84rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+}
+
+/* Clean Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.badge-mvp {
+  background: #EDE9FE;
+  color: #6D28D9;
+  border: 1px solid #DDD6FE;
+}
+
+.badge-stretch {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.badge-future {
+  background: #F1EFEA;
+  color: #6E756A;
+  border: 1px solid #E3E0D7;
+}
+
+.badge-feasible {
+  background: var(--status-feasible-bg);
+  color: var(--status-feasible);
+  border: 1px solid var(--status-feasible-border);
+}
+
+.badge-tight {
+  background: var(--status-tight-bg);
+  color: var(--status-tight);
+  border: 1px solid var(--status-tight-border);
+}
+
+.badge-unfeasible {
+  background: var(--status-unfeasible-bg);
+  color: var(--status-unfeasible);
+  border: 1px solid var(--status-unfeasible-border);
+}
+
+/* Project Status Badges */
+.badge-status-draft {
+  background: #F1EFEA;
+  color: #6E756A;
+  border: 1px solid #E3E0D7;
+}
+
+.badge-status-generating {
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1px solid #BFDBFE;
+}
+
+.badge-status-generated {
+  background: var(--status-feasible-bg);
+  color: var(--status-feasible);
+  border: 1px solid var(--status-feasible-border);
+}
+
+.badge-status-in-progress {
+  background: #EDE9FE;
+  color: #6D28D9;
+  border: 1px solid #DDD6FE;
+}
+
+.badge-status-failed {
+  background: var(--status-unfeasible-bg);
+  color: var(--status-unfeasible);
+  border: 1px solid var(--status-unfeasible-border);
+}
+
+/* Priority Badges */
+.badge-priority-critical {
+  background: #FEE2E2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+}
+
+.badge-priority-high {
+  background: #FFEDD5;
+  color: #C2410C;
+  border: 1px solid #FDBA74;
+}
+
+.badge-priority-medium {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.badge-priority-low {
+  background: #EDE9FE;
+  color: #6D28D9;
+  border: 1px solid #DDD6FE;
+}
+
+/* Nav Tab Pills */
+.nav-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+}
+
+.nav-tab-pill:hover {
+  color: var(--text-main);
+  background: #F1EFEA;
+}
+
+.nav-tab-pill.active {
+  color: var(--text-main);
+  background: #EAE6DD;
+  border-color: #D8D2C7;
+}
+
+/* Form Controls */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(101, 85, 201, 0.15);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.9; }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Modal Dialog Animations & Styles */
+@keyframes modalOverlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalContentScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-overlay {
+  animation: modalOverlayFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-content {
+  animation: modalContentScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#btn-cancel-signout:focus-visible {
+  outline: 2px solid #6555C9 !important;
+  outline-offset: 2px !important;
+}
+
+#btn-confirm-signout:focus-visible {
+  outline: 2px solid #B91C1C !important;
+  outline-offset: 2px !important;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
